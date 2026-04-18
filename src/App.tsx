@@ -25,14 +25,14 @@ import { Message, ChatSession } from './types';
 import { cn } from './lib/utils';
 
 // shadcn UI components
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Separator } from "@/components/ui/separator";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "./components/ui/button";
+import { Input } from "./components/ui/input";
+import { ScrollArea } from "./components/ui/scroll-area";
+import { Avatar, AvatarFallback, AvatarImage } from "./components/ui/avatar";
+import { Separator } from "./components/ui/separator";
+import { Sheet, SheetContent, SheetTrigger } from "./components/ui/sheet";
+import { Badge } from "./components/ui/badge";
+import { Card, CardContent } from "./components/ui/card";
 
 const SYSTEM_INSTRUCTIONS = `
 You are a smart AI assistant designed to give short, clear, and precise answers.
@@ -64,7 +64,9 @@ export default function App() {
   const [editingTitle, setEditingTitle] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
   
-  const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+  // Support both AI Studio and Vercel environments
+  const apiKey = process.env.GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY;
+  const ai = new GoogleGenAI({ apiKey: apiKey || '' });
 
   // Auth Listener
   useEffect(() => {
