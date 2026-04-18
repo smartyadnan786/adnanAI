@@ -1,0 +1,77 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "Geist Variable", "Segoe UI", "Roboto", "Helvetica", "Arial", sans-serif;
+  --color-brand: #0061FF;
+  --color-brand-gradient: linear-gradient(135deg, #0061FF 0%, #60EFFF 100%);
+  --color-surface: #FFFFFF;
+  --color-bg-base: #F4F7F9;
+  --color-text-main: #2C3E50;
+  --color-text-muted: #95A5A6;
+  --color-success: #27AE60;
+
+  /* shadcn mappings */
+  --color-primary: var(--color-brand);
+  --color-primary-foreground: white;
+  --color-background: white;
+  --color-foreground: var(--color-text-main);
+  --color-muted: #F8FAFC;
+  --color-muted-foreground: var(--color-text-muted);
+  --color-accent: #F1F5F9;
+  --color-accent-foreground: var(--color-brand);
+  --color-border: #E2E8F0;
+  --color-input: #E2E8F0;
+  --color-ring: var(--color-brand);
+  --radius: 0.75rem;
+
+  --color-sidebar: white;
+  --color-sidebar-foreground: var(--color-text-main);
+  --color-sidebar-primary: var(--color-brand);
+  --color-sidebar-primary-foreground: white;
+  --color-sidebar-accent: #F1F5F9;
+  --color-sidebar-accent-foreground: var(--color-brand);
+  --color-sidebar-border: #E2E8F0;
+  --color-sidebar-ring: var(--color-brand);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-color: var(--color-bg-base);
+    -webkit-font-smoothing: antialiased;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+.chat-bubble {
+  @apply rounded-2xl px-5 py-3.5 transition-all duration-200;
+}
+
+.chat-bubble-user {
+  @apply bg-brand text-white rounded-br-none shadow-md shadow-blue-500/10 font-medium;
+}
+
+.chat-bubble-assistant {
+  @apply bg-white text-foreground border border-border rounded-bl-none shadow-sm font-medium;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-gray-200 rounded-full hover:bg-gray-300;
+}
